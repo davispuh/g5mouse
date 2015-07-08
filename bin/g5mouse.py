@@ -203,23 +203,23 @@ def check_valid_mouse(fd):
     devinfo.get(fd)
 
     if devinfo.vendor == LOGIMOUSE.MOUSE_VENDOR:
-        print "LOGITECH MOUSE FOUND!"
+        print("LOGITECH MOUSE FOUND!")
     else:
-        print "ERROR: NO LOGITECH MOUSE FOUND! EXIT NOW!"
+        print("ERROR: NO LOGITECH MOUSE FOUND! EXIT NOW!")
         sys.exit(1)
 
     if devinfo.product == LOGIMOUSE.MOUSE_G3:
-        print ">>  G3 Gaming Mouse detected!\n"
+        print(">>  G3 Gaming Mouse detected!\n")
     elif devinfo.product == LOGIMOUSE.MOUSE_G5_FIRST:
-        print ">>  G5 1ST Generation Gaming Mouse detected!\n"
+        print(">>  G5 1ST Generation Gaming Mouse detected!\n")
     elif devinfo.product == LOGIMOUSE.MOUSE_G5_SECOND:
-        print ">>  G5 2ND Generation Gaming Mouse detected!\n"
+        print(">>  G5 2ND Generation Gaming Mouse detected!\n")
     elif devinfo.product == LOGIMOUSE.MOUSE_G7:
-        print ">>  G7 Gaming Mouse detected!\n"
+        print(">>  G7 Gaming Mouse detected!\n")
     elif devinfo.product == LOGIMOUSE.MOUSE_G9:
-        print ">>  G9 Gaming Mouse detected!\n"
+        print(">>  G9 Gaming Mouse detected!\n")
     else:
-        print "ERROR: NO LOGITECH G-SERIES MOUSE FOUND! EXIT NOW!"
+        print("ERROR: NO LOGITECH G-SERIES MOUSE FOUND! EXIT NOW!")
         sys.exit(1)
 
 def parse_arguments():
@@ -242,8 +242,8 @@ def parse_arguments():
     (options, args) = parser.parse_args()
 
     if len(args) == 0 and (options.dpi or options.led or options.nodpibuttons or options.dpibuttons):
-        print "\n\n################ USE DEFAULT CONFIG !!! ################"
-        print "\n\nINFO: use defualt device %s" % LOGIMOUSE.MOUSE_SETTINGS[0]
+        print("\n\n################ USE DEFAULT CONFIG !!! ################")
+        print("\n\nINFO: use defualt device %s" % LOGIMOUSE.MOUSE_SETTINGS[0])
     elif len(args) == 1:
         LOGIMOUSE.MOUSE_SETTINGS[0] = args[0]
     else:
@@ -253,19 +253,19 @@ def parse_arguments():
     if options.dpi and options.dpi in ['400','800','1600','2000']:
         LOGIMOUSE.MOUSE_SETTINGS.append(LOGIMOUSE.SET_DPI[options.dpi])
     else:
-        print "use default DPI: 1600DPI"
+        print("use default DPI: 1600DPI")
         LOGIMOUSE.MOUSE_SETTINGS.append(LOGIMOUSE.SET_DPI['1600'])
         
     if options.led and options.led in ['NONE','1','2','3','ALL']:
         LOGIMOUSE.MOUSE_SETTINGS.append(LOGIMOUSE.SET_LED[options.led])
     else:
-        print "use default LED settings: NO LEDS"
+        print("use default LED settings: NO LEDS")
         LOGIMOUSE.MOUSE_SETTINGS.append(LOGIMOUSE.SET_LED['NONE'])
         
     if options.nodpibuttons and options.nodpibuttons == True:
         LOGIMOUSE.MOUSE_SETTINGS.append(LOGIMOUSE.DISABLE_SPEED_BUTTONS)
     else:
-        print "Default: enable hardware speed buttons."
+        print("Default: enable hardware speed buttons.")
 
 def main():
     parse_arguments()
@@ -273,7 +273,7 @@ def main():
     try:
         f = open(LOGIMOUSE.MOUSE_SETTINGS[0], "r")
     except:
-        print "\n\nERROR: no such device %s\n" % LOGIMOUSE.MOUSE_SETTINGS[0]
+        print("\n\nERROR: no such device %s\n" % LOGIMOUSE.MOUSE_SETTINGS[0])
         sys.exit(1)
         
     check_valid_mouse(f)
